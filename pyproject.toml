@@ -1,0 +1,15 @@
+[project]
+name = "pdfkit"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "ajrlewis", email = "hello@ajrlewis.com" }
+]
+dependencies = [
+]
+license = "MIT"
+
+[tool.setuptools]
+packages = ["pdfkit"]
