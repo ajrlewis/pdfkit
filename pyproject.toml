@@ -11,5 +11,6 @@ dependencies = [
     "reportlab==4.2.2",
 ]
 
-[tool.setuptools]
-packages = ["pdfkit", "pdfkit.fonts"]
+[tool.setuptools.packages.find]
+where = ["pdfkit"]
+namespaces = false
