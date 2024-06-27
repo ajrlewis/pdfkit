@@ -9,9 +9,6 @@ build-backend = "setuptools.build_meta"
 name = "pdfkit"
 version = "0.1.0"
 description = "A collection of PDF utility methods."
-keywords = [
-  "Imaging",
-]
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -23,8 +20,5 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["pdfkit"]
-package_dir = {"" = "src"}
-include_package_data = true
-
-[options.package_data]
-foo = ["src/fonts/*"]
+include-package-data = true
+package-dir = {"" = "src"}
