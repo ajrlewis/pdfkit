@@ -12,4 +12,4 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["pdfkit"]
+packages = ["pdfkit", "pdfkit.fonts"]
