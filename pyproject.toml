@@ -9,6 +9,9 @@ build-backend = "setuptools.build_meta"
 name = "pdfkit"
 version = "0.1.0"
 description = "A collection of PDF utility methods."
+keywords = [
+  "PDF",
+]
 readme = "README.md"
 requires-python = ">=3.9"
 authors = [
@@ -18,6 +21,7 @@ dependencies = [
     "reportlab==4.2.2",
 ]
 
-[tool.setuptools.packages.find]
-where = ["pdfkit"]
-namespaces = true
+[tool.setuptools]
+packages = ["pdfkit"]
+include-package-data = true
+package-dir = {"" = "src"}
