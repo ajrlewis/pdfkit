@@ -1,4 +1,5 @@
 from io import BytesIO
+import os
 from PIL import Image
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import inch
@@ -8,16 +9,21 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
 
-# def register_fonts():
-#     font_name_to_file = {
-#         "CMUSerif-Roman": "cmunrm.ttf",
-#         "CMUSerif-Italic": "cmunti.ttf",
-#         "CMUSerif-Bold": "cmunbx.ttf",
-#     }
-#     for font_name, font_file in font_name_to_file.items():
-#         font = TTFont(font_name, f"static/fonts/cm-unicode-0.7.0/{font_file}")
-#         pdfmetrics.registerFont(font)
-# register_fonts()
+def register_fonts():
+    font_name_to_file = {
+        "CMUSerif-Roman": "cmunrm.ttf",
+        "CMUSerif-Italic": "cmunti.ttf",
+        "CMUSerif-Bold": "cmunbx.ttf",
+    }
+    for font_name, font_file in font_name_to_file.items():
+        font_path = (
+            f"{os.path.dirname(os.path.realpath(__file__))}/fonts/cm-unicode-0.7.0/"
+        )
+        font = TTFont(font_name, f"{font_path}/{font_file}")
+        pdfmetrics.registerFont(font)
+
+
+register_fonts()
 
 
 class PDF:
@@ -47,9 +53,7 @@ class PDF:
 
         self._buffer = BytesIO()
         self._canvas = canvas.Canvas(self._buffer, pagesize=letter)
-
-    def register_fonts(self):
-        pass
+        self.regular_font()
 
     def header(self):
         if self.header_img:
@@ -163,12 +167,11 @@ class PDF:
         self._canvas.save()
 
     def to_bytes(self):
-        pdf = self._buffer.getvalue()
+        pdf_bytes = self._buffer.getvalue()
         self._buffer.close()
-        return pdf
+        return pdf_bytes
 
-    def create(self, text: str):
-        self.header()
+    def simple(self, text: str) -> bytes:
         self.draw_text(text)
         self.save()
-        self.to_bytes()
+        return self.to_bytes()
