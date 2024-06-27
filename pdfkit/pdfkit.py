@@ -17,8 +17,6 @@ from reportlab.pdfbase.ttfonts import TTFont
 #     for font_name, font_file in font_name_to_file.items():
 #         font = TTFont(font_name, f"static/fonts/cm-unicode-0.7.0/{font_file}")
 #         pdfmetrics.registerFont(font)
-
-
 # register_fonts()
 
 
@@ -50,6 +48,9 @@ class PDF:
         self._buffer = BytesIO()
         self._canvas = canvas.Canvas(self._buffer, pagesize=letter)
 
+    def register_fonts(self):
+        pass
+
     def header(self):
         if self.header_img:
             self.add_image(self.header_img, width=150, height=150)
@@ -67,7 +68,10 @@ class PDF:
         )
 
     def set_font(self, name: str):
-        self._canvas.setFont(name, self._font_size)
+        try:
+            self._canvas.setFont(name, self._font_size)
+        except:
+            pass
 
     def regular_font(self):
         self.set_font("CMUSerif-Roman")
@@ -162,3 +166,9 @@ class PDF:
         pdf = self._buffer.getvalue()
         self._buffer.close()
         return pdf
+
+    def create(self, text: str):
+        self.header()
+        self.draw_text(text)
+        self.save()
+        self.to_bytes()

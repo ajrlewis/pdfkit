@@ -1,15 +1,15 @@
 [project]
 name = "pdfkit"
 version = "0.1.0"
-description = ""
+description = "A collection of PDF utility methods."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.9"
 authors = [
     { name = "ajrlewis", email = "hello@ajrlewis.com" }
 ]
 dependencies = [
+    "reportlab==4.2.2",
 ]
-license = "MIT"
 
 [tool.setuptools]
 packages = ["pdfkit"]
