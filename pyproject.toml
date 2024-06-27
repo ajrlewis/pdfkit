@@ -20,4 +20,4 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["pdfkit"]
-namespaces = false
+namespaces = true
